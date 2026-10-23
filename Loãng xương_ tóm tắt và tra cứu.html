@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Loãng xương: tóm tắt và tra cứu</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f5f4;--surf:#fff;--ink:#14262b;--mute:#566a6e;--line:#d3dcdb;--acc:#0f6b6b;--accbg:#dcefee;--warn:#9a4a07;--warnbg:#fbe9d6;--bad:#a1262b;--badbg:#f9dcdc;--ok:#1d6a3a;--okbg:#dcf0e2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a1c;--surf:#172527;--ink:#e6efee;--mute:#9bb0b2;--line:#2b3f42;--acc:#5fc4c0;--accbg:#183a3b;--warn:#f0b36e;--warnbg:#3a2a14;--bad:#f09a9d;--badbg:#3d1e20;--ok:#82d6a0;--okbg:#17321f}}
+:root[data-theme="dark"]{--bg:#0f1a1c;--surf:#172527;--ink:#e6efee;--mute:#9bb0b2;--line:#2b3f42;--acc:#5fc4c0;--accbg:#183a3b;--warn:#f0b36e;--warnbg:#3a2a14;--bad:#f09a9d;--badbg:#3d1e20;--ok:#82d6a0;--okbg:#17321f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Be Vietnam Pro",system-ui,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;line-height:1.25;margin:8px 0 4px}
+.sub{color:var(--mute);margin:0 0 18px;font-size:.9rem}
+.tool{background:var(--surf);border:2px solid var(--acc);border-radius:10px;padding:16px;margin-bottom:20px}
+.tool h2{margin:0 0 10px;font-size:1.05rem}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+label{font-size:.9rem}
+input[type=number],input[type=search]{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+input:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset:1px}
+.tin{width:110px!important}
+.res{margin-top:12px;border-radius:8px;padding:12px 14px;display:none}
+.res b{display:block;font-size:1.05rem}
+.ok{background:var(--okbg);color:var(--ok)}.warn{background:var(--warnbg);color:var(--warn)}.bad{background:var(--badbg);color:var(--bad)}
+.res span{color:var(--ink);font-size:.92rem}
+.find{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;z-index:5}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:6px 0 10px}
+.tabs button{font:inherit;font-size:.9rem;white-space:nowrap;background:var(--surf);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.card{background:var(--surf);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:8px;padding:12px 16px;margin:0 0 12px}
+.card h3{margin:0 0 4px;font-size:1rem}
+.card ul{margin:4px 0 0;padding-left:20px}
+.card li{margin:2px 0}
+.tag{font-size:.78rem;color:var(--mute)}
+.scroll{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:560px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--mute);font-weight:500}
+mark{background:var(--warnbg);color:var(--ink);border-radius:2px}
+.none{color:var(--mute);padding:20px 0;text-align:center}
+.foot{color:var(--mute);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Loãng xương: tóm tắt và tra cứu</h1>
+<p class="sub">Theo Hướng dẫn chẩn đoán, điều trị và dự phòng bệnh loãng xương, cập nhật 2019 (Hội Loãng xương TP.HCM, Sở Y tế TP.HCM, 6/2020).</p>
+
+<section class="tool" aria-labelledby="t1">
+<h2 id="t1">Tra nhanh theo T-score</h2>
+<div class="row">
+<label>T-score <input class="tin" id="ts" type="number" step="0.1" placeholder="vd: -2.8" inputmode="decimal"></label>
+<label><input type="checkbox" id="fx"> Đã gãy xương sau chấn thương nhẹ</label>
+<label><input type="checkbox" id="fr"> Nguy cơ 10 năm cao (hông ≥3% hoặc bất kỳ ≥20%)</label>
+</div>
+<div class="res" id="r1" aria-live="polite"></div>
+<p class="tag">Áp dụng cho phụ nữ sau mãn kinh và nam ≥50 tuổi, sau khi đã loại trừ loãng xương thứ phát. Với nhóm khác dùng Z-score (&lt; -2.0 là giảm khối lượng xương).</p>
+</section>
+
+<section class="tool" aria-labelledby="t2">
+<h2 id="t2">Độ thanh lọc creatinine (Cockcroft-Gault)</h2>
+<div class="row">
+<label>Tuổi <input class="tin" id="ag" type="number" min="1"></label>
+<label>Cân nặng (kg) <input class="tin" id="wt" type="number" min="1"></label>
+<label>Creatinine huyết thanh (mg/dl) <input class="tin" id="cr" type="number" step="0.01" min="0.1"></label>
+</div>
+<div class="res" id="r2" aria-live="polite"></div>
+<p class="tag">Công thức trong tài liệu: (140 − tuổi) × cân nặng / (72 × creatinine). Bisphosphonate chống chỉ định khi mức lọc cầu thận &lt; 35 ml/phút.</p>
+</section>
+
+<div class="find">
+<input type="search" id="q" placeholder="Tìm: zoledronic, canxi, FRAX, drug holiday..." aria-label="Tìm trong tài liệu">
+<div class="tabs" id="tabs"></div>
+</div>
+<div id="list"></div>
+<p class="foot">Bản tóm tắt để tra cứu, không thay thế tài liệu gốc hay đánh giá của bác sĩ. Một số ghi chú ngoài tài liệu được đánh dấu rõ.</p>
+</div>
+
+<script>
+var D=[
+{c:"Chẩn đoán",t:"Định nghĩa và mã bệnh",b:["Loãng xương là rối loạn chuyển hoá của xương làm giảm sức mạnh xương, tăng nguy cơ gãy xương.","ICD-10: M81 loãng xương không gãy xương; M80 loãng xương có gãy xương (loãng xương nặng).","Gãy xương vùng hông và gãy đốt sống là biến cố nặng nhất. Gần 25% trường hợp gãy xương vùng hông tử vong trong năm đầu; gãy đốt sống chiếm khoảng 70% gãy xương do loãng xương nhưng thường không có triệu chứng rõ."]},
+{c:"Chẩn đoán",t:"Ai cần được đánh giá và đo BMD",b:["Mọi phụ nữ sau mãn kinh và nam trên 50 tuổi cần đánh giá nguy cơ loãng xương.","Đo BMD: phụ nữ ≥65 tuổi và nam ≥70 tuổi (dù có hay không có yếu tố nguy cơ).","Phụ nữ sau mãn kinh và nam 50–69 tuổi có yếu tố nguy cơ; phụ nữ tiền mãn kinh có yếu tố nguy cơ (cân nặng thấp, gãy xương do chấn thương nhẹ, dùng thuốc gây mất xương).","Người lớn gãy xương sau 50 tuổi; bệnh gây mất xương (viêm khớp dạng thấp, viêm cột sống dính khớp, lupus) hoặc glucocorticoid ≥5 mg/ngày kéo dài ≥3 tháng.","Đo BMD để theo dõi điều trị."]},
+{c:"Chẩn đoán",t:"Kỹ thuật và vị trí đo",b:["DXA là phương pháp tốt nhất để chẩn đoán, tiên lượng và theo dõi.","Vị trí: xương vùng hông (bên không thuận, dùng nhiều nhất) và cột sống thắt lưng (L1–L4). Nếu không đo được thì dùng 1/3 đầu dưới xương quay.","DXA ngoại biên và siêu âm định lượng (xương gót) chỉ có giá trị sàng lọc hoặc tiên lượng, không dùng để chẩn đoán và theo dõi đáp ứng điều trị.","Nên đo theo dõi trên cùng một máy hoặc cùng loại máy."]},
+{c:"Chẩn đoán",t:"Tiêu chuẩn WHO theo T-score",tbl:[["Phân loại","T-score"],["Bình thường","> -1 SD"],["Thiếu xương","từ > -2.5 đến -1"],["Loãng xương","≤ -2.5"],["Loãng xương nặng","≤ -2.5 kèm gãy xương do xương yếu"]],b:["BMD giảm 1 SD tương ứng giảm 10–12% mật độ xương và nguy cơ gãy xương tăng khoảng 1,5 lần.","Phụ nữ trước mãn kinh, nam <50 tuổi và người trẻ: dùng Z-score. Z-score < -2.0 được coi là giảm khối lượng xương đáng kể."]},
+{c:"Chẩn đoán",t:"Yếu tố nguy cơ",b:["Giảm mật độ xương (yếu tố quan trọng nhất); giảm 1 SD ở cổ xương đùi làm nguy cơ gãy xương gấp 2 lần.","Cao tuổi: tăng 10 tuổi tương đương tăng 2,2 lần nguy cơ gãy xương. Giới nữ.","BMI ≤18,5 kg/m²: nguy cơ gãy xương tăng 1,8 lần.","Glucocorticoid uống ≥5 mg prednisone/ngày (hoặc tương đương) ≥3 tháng.","Hút thuốc; uống ≥3 đơn vị rượu/ngày (1 đơn vị = 40 ml rượu mạnh, 150 ml rượu vang hoặc 300–350 ml bia).","Té ngã (gần 90% gãy cổ xương đùi do té ngã); yếu cơ, thị lực kém, bệnh thần kinh.","Tiền sử gãy xương bản thân hoặc cha mẹ gãy xương vùng hông (nguy cơ gãy lần hai tăng 2–3 lần).","Canxi từ thực phẩm <400 mg/ngày: nguy cơ tăng gấp 3 lần.","Nguyên nhân thứ phát: viêm khớp hệ thống, thiểu năng sinh dục không điều trị, bất động kéo dài, ghép tạng, cường giáp, đái tháo đường type 1, bệnh thận mạn, bệnh tiêu hoá kém hấp thu, bệnh gan mạn, COPD."]},
+{c:"Chẩn đoán",t:"Xét nghiệm thường quy cho mọi bệnh nhân",tbl:[["Xét nghiệm","Mục đích"],["Công thức máu","Gợi ý thiếu máu do kém hấp thu, bệnh ác tính, bệnh tuỷ xương"],["Calci máu (ion đồ)","Cần khi bắt đầu thuốc; loại trừ cường cận giáp, bệnh ác tính"],["Glucose, HbA1C","Tầm soát đái tháo đường"],["AST, ALT, albumin","Chức năng gan"],["Creatinin, GFR","Chức năng thận, mức lọc cầu thận"],["DXA","Xác định chẩn đoán, đánh giá nguy cơ, theo dõi"]]},
+{c:"Chẩn đoán",t:"Thăm dò thêm khi nghi loãng xương thứ phát",tbl:[["Xét nghiệm","Gợi ý"],["Tốc độ máu lắng, CRP","Bệnh viêm, bệnh gamma đơn dòng (đa u tuỷ)"],["Phosphatase kiềm","Tăng: bất động kéo dài, gãy xương mới, bệnh Paget, K di căn"],["Điện di protein (máu, nước tiểu)","Nghi đa u tuỷ"],["Phospho máu","Giảm trong bệnh nhuyễn xương"],["25-OH vitamin D","Xác định thiếu vitamin D"],["PTH","Tăng trong cường cận giáp"],["Cortisol buổi sáng","Chức năng tuyến thượng thận"],["Estradiol / Testosterone","Thiểu năng sinh dục nữ / nam"],["TSH, FT3, FT4","Nghi cường giáp"],["Calci niệu 24h","Tăng calci niệu; thấp gợi ý thiếu vitamin D, kém hấp thu"],["X quang cột sống","Khẳng định hoặc loại trừ gãy đốt sống, bệnh Paget, K"],["MRI, sinh thiết xương","Hiếm khi cần; loại trừ bệnh ác tính"]],b:["Marker chu chuyển xương (phosphatase kiềm đặc hiệu xương, osteocalcin, N-telopeptide...): chưa có sự thống nhất dùng thường quy."]},
+{c:"Chẩn đoán",t:"Mô hình tiên lượng gãy xương",b:["FRAX của WHO: tuổi, giới, tiền sử gãy xương do loãng xương, cha mẹ gãy xương vùng hông, chiều cao, cân nặng, viêm khớp dạng thấp, loãng xương thứ phát, BMD cổ xương đùi, hút thuốc, rượu ≥3 đơn vị/ngày, glucocorticoid ≥5 mg/ngày ≥3 tháng.","NGUYEN của viện Garvan (Úc): tuổi, giới, tiền sử gãy xương sau 50 tuổi, té ngã trong 12 tháng trước, BMD hoặc T-score."]},
+{c:"Điều trị",t:"Khi nào điều trị",b:["Áp dụng cho phụ nữ sau mãn kinh và nam ≥50 tuổi, sau khi loại trừ nguyên nhân thứ phát.","T-score ≤ -2.5 (hông và/hoặc cột sống thắt lưng).","Gãy đốt sống hoặc cổ xương đùi sau té nhẹ (không cần T-score).","T-score từ -1.0 đến -2.4 và nguy cơ gãy xương 10 năm ≥3% (vùng hông) hoặc ≥20% (bất kỳ), theo FRAX/NGUYEN.","Quyết định còn dựa vào lợi ích, nguy cơ, chi phí và mong muốn của người bệnh."]},
+{c:"Điều trị",t:"Mục tiêu điều trị",b:["T-score > -2.5 (đã gãy xương: > -1.5) và nguy cơ gãy xương 10 năm <10%.","Thời gian điều trị đủ để đạt mục tiêu, từ 3 năm trở lên.","Đo BMD bằng DXA trung tâm và đánh giá nguy cơ bằng FRAX/NGUYEN."]},
+{c:"Điều trị",t:"Canxi và vitamin D",b:["Canxi: 1.000–1.200 mg/ngày (≈1.000 mg cho nam 50–70 tuổi; ≈1.200 mg cho nam >70 và nữ >50), ưu tiên từ thực phẩm. Không bổ sung quá 1.500 mg/ngày.","Vitamin D: mục tiêu 25(OH)D huyết thanh 30–60 ng/ml. Nhu cầu 800–1.000 IU/ngày cho người ≥50 tuổi; giới hạn an toàn 2.000 IU/ngày.","Thiếu vitamin D: 50.000 IU D2 hoặc D3 mỗi tuần, hoặc 6.000 IU/ngày, trong 8–12 tuần đến khi đạt 30 ng/ml; duy trì 1.000–2.000 IU/ngày.","Nguy cơ cao thiếu vitamin D (kém hấp thu, bệnh thận mạn, béo phì, người già yếu ít ra nắng) có thể cần liều cao hơn. Calcitriol chủ yếu cho bệnh thận mạn, suy thận và người cao tuổi."]},
+{c:"Điều trị",t:"Biện pháp không dùng thuốc",b:["Vận động ít nhất 30 phút/ngày, ít nhất 5 ngày/tuần: đi bộ, chạy nhẹ, thái cực quyền, khiêu vũ, aerobic, yoga, tập chịu tải.","Ngưng hút thuốc; không quá 3 đơn vị rượu/ngày.","Phòng té ngã: tay vịn, đủ ánh sáng, sàn không trơn, dụng cụ hỗ trợ đi lại; cải thiện thị lực, cơ lực; thận trọng với thuốc gây ngủ ở người cao tuổi."]},
+{c:"Thuốc",t:"Bảng thuốc điều trị loãng xương",tbl:[["Thuốc","Nhóm","Giảm mất xương","Chống gãy CS","Chống gãy ngoài CS"],["Alendronate","Chống hủy xương","++","A","A"],["Risedronate","Chống hủy xương","++","A","A"],["Ibandronate","Chống hủy xương","++","A","0"],["Zoledronic acid","Chống hủy xương","++","A","A"],["Calcitonin","Chống hủy xương","+","B","0"],["Estrogen/HRT","Chống hủy xương","+","A","A"],["Raloxifene","Chống hủy xương","++","A","0"],["Denosumab","Chống hủy xương","++","A","A"],["PTH (teriparatide)","Tăng tạo xương","+++","A","A"],["Strontium ranelate","Tăng tạo xương","++","A","A"]],b:["Giảm mất xương: + tăng BMD 3–5%, ++ 5–10%, +++ >10%. Chứng cứ: A là RCT lớn, B chưa hoàn toàn nhất quán, 0 chưa có chứng cứ. CS = cột sống."]},
+{c:"Thuốc",t:"Bisphosphonate: liều dùng",b:["Là nhóm lựa chọn đầu tiên và là nhóm chính có mặt tại Việt Nam.","Alendronate 70 mg uống mỗi tuần (đơn thuần hoặc kết hợp vitamin D3 2.800 hoặc 5.600 UI).","Risedronate 35 mg mỗi tuần, hoặc 75 mg mỗi 2 tuần, hoặc 150 mg mỗi tháng.","Ibandronate 150 mg uống mỗi tháng hoặc 3 mg tiêm tĩnh mạch mỗi 3 tháng (chỉ định cho loãng xương sau mãn kinh).","Zoledronic acid 5 mg truyền tĩnh mạch mỗi năm một lần; dùng cho sau mãn kinh, nam giới, người cao tuổi, do glucocorticoid kéo dài."]},
+{c:"Thuốc",t:"Bisphosphonate: cách dùng, tác dụng phụ, chống chỉ định",b:["Dạng uống: uống lúc đói buổi sáng với một ly nước lọc lớn (~250 ml); sau đó không nằm, không ăn uống hay dùng thuốc khác ít nhất 30 phút (ibandronate: 45 phút).","Tác dụng phụ dạng uống: viêm thực quản, loét dạ dày, nuốt khó.","Zoledronic acid: truyền ≥15 phút (5 mg/100 ml); bổ sung đủ nước, canxi, vitamin D trước truyền; có thể dùng paracetamol giảm đau khớp, đau đầu, đau cơ, sốt sau truyền.","Hiếm gặp: hoại tử xương hàm, gãy xương không điển hình, rối loạn thị lực, rung nhĩ. Cần tầm soát bệnh răng miệng.","Chống chỉ định: có thai, cho con bú, dưới 18 tuổi, suy thận với GFR <35 ml/phút."]},
+{c:"Thuốc",t:"Denosumab, Teriparatide, Romosozumab",b:["Denosumab: kháng thể đơn dòng ức chế RANKL. 60 mg tiêm dưới da mỗi 6 tháng. Dùng cho phụ nữ mãn kinh, viêm khớp dạng thấp nguy cơ cao, GFR <35 ml/phút (chống chỉ định BP), phụ nữ ung thư vú, nam điều trị ung thư tuyến tiền liệt. Tài liệu ghi thuốc đang có kế hoạch giới thiệu tại Việt Nam.","Teriparatide (PTH 1-34): thuốc tăng tạo xương đầu tiên; 20 µg/ngày, tối đa 2 năm; không dùng đồng thời bisphosphonate, sau đó có thể dùng tiếp BP. Tránh ở người nguy cơ ung thư xương (tiền căn K, tăng canxi máu, xạ trị trước đó). Có kế hoạch giới thiệu tại Việt Nam.","Romosozumab (kháng sclerostin): FDA chấp thuận tháng 4/2019 cho phụ nữ mãn kinh; chưa có tại Việt Nam (theo tài liệu)."]},
+{c:"Thuốc",t:"Calcitonin, HRT, Raloxifene, Strontium",b:["Calcitonin: ngắn ngày (2–4 tuần) trong gãy xương mới, đau cấp; 100–200 IU tiêm dưới da mỗi ngày.","Estrogen/HRT: dự phòng và điều trị triệu chứng mãn kinh; không khuyến cáo dùng >2 năm để điều trị loãng xương (huyết khối, ung thư vú).","Raloxifene (SERM): 60 mg/ngày; giảm ung thư vú xâm lấn, không giảm bệnh mạch vành, có thể tăng nguy cơ huyết khối tĩnh mạch sâu.","Strontium ranelate: 2 g/ngày buổi tối lúc dạ dày trống; đã ngừng 2016–2017 do tăng nguy cơ huyết khối, ảnh hưởng tim mạch, dị ứng nghiêm trọng.","Thuốc khác khi không dung nạp hoặc chống chỉ định: vitamin K2, muối fluor, tibolone, thuốc đồng hoá, etidronate, pamidronate."]},
+{c:"Theo dõi",t:"Thời gian điều trị và drug holiday",b:["Bisphosphonate liên tục 3–5 năm (5 năm đường uống, 3 năm đường truyền tĩnh mạch), sau đó cân nhắc theo BMD/T-score và nguy cơ gãy xương 10 năm.","Nguy cơ thấp (<10%): có thể tạm nghỉ BP.","Nguy cơ trung bình (10–20%): cân nhắc tạm nghỉ.","Nguy cơ cao (>20%): tiếp tục điều trị, hoặc chuyển liệu pháp khác (thường là denosumab).","Sau nghỉ khoảng 6 tháng đến 1 năm: đo lại BMD, đánh giá lại nguy cơ; điều trị lại nếu BMD/T-score giảm hoặc nguy cơ tăng."]},
+{c:"Theo dõi",t:"Theo dõi lâm sàng và BMD",b:["Tái khám sau 3–6 tháng, sau đó ít nhất mỗi năm 1 lần; đo chiều cao hàng năm, nếu giảm ≥2 cm nên chụp X quang cột sống tìm gãy đốt sống mới.","Tuân thủ chỉ đạt khoảng 50% sau 1 năm, ảnh hưởng lớn đến hiệu quả.","Đo BMD: đa số mỗi 2 năm; nguy cơ cao hoặc glucocorticoid kéo dài: mỗi 6 tháng đến 1 năm.","Chỉ thay đổi BMD >4–5% (DXA) mới có ý nghĩa lâm sàng. BMD giảm có thể do không tuân thủ, uống thuốc sai cách (sau bữa ăn), thiếu canxi, vitamin D.","Marker chu chuyển xương (phosphatase kiềm đặc hiệu xương, osteocalcin, telopeptide) đánh giá sớm đáp ứng sau 3–6 tháng, nhưng không dùng riêng để ngừng hay đổi thuốc."]},
+{c:"Phòng bệnh",t:"Nguyên tắc dự phòng",b:["Tăng 10% khối lượng xương đỉnh giúp giảm 50% nguy cơ gãy xương do loãng xương suốt đời.","Mỗi lần khám: hỏi yếu tố nguy cơ, đo chiều cao định kỳ, khám gù vẹo cột sống.","Dinh dưỡng đủ canxi (sữa và sản phẩm từ sữa), vitamin D từ nắng và chế phẩm; vận động đều đặn; bỏ thuốc lá, hạn chế rượu bia; phòng té ngã.","Cơ có vai trò nuôi dưỡng xương; loãng xương và thiếu cơ (sarcopenia) góp phần vào hội chứng già yếu."]},
+{c:"Phòng bệnh",t:"Nhóm đặc biệt",b:["Glucocorticoid: dự phòng sớm (alendronate, risedronate, zoledronic acid) cho bệnh nhân có T-score >-2.5 nhưng nguy cơ gãy xương cao.","Người đã gãy xương: quản lý hệ thống theo mô hình Fracture Liaison Service để phòng tái gãy xương. Hội Loãng xương TP.HCM đã có kế hoạch triển khai năm 2020."]}
+];
+var tabs=["Tất cả"].concat(D.map(function(x){return x.c}).filter(function(v,i,a){return a.indexOf(v)==i}));
+var cur="Tất cả",q="";
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function hl(s){s=esc(s);if(!q)return s;var r=new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");return s.replace(r,"<mark>$1</mark>")}
+function flat(x){return (x.t+" "+(x.b||[]).join(" ")+" "+(x.tbl||[]).map(function(r){return r.join(" ")}).join(" ")).toLowerCase()}
+function render(){
+ var h="",n=0;
+ D.forEach(function(x){
+  if(cur!="Tất cả"&&!q&&x.c!=cur)return;
+  if(q&&flat(x).indexOf(q.toLowerCase())<0)return;
+  n++;
+  h+='<article class="card"><h3>'+hl(x.t)+'</h3><span class="tag">'+x.c+'</span>';
+  if(x.tbl){h+='<div class="scroll"><table><thead><tr>'+x.tbl[0].map(function(c){return"<th>"+c+"</th>"}).join("")+"</tr></thead><tbody>"+x.tbl.slice(1).map(function(r){return"<tr>"+r.map(function(c){return"<td>"+hl(c)+"</td>"}).join("")+"</tr>"}).join("")+"</tbody></table></div>"}
+  if(x.b){h+="<ul>"+x.b.map(function(l){return"<li>"+hl(l)+"</li>"}).join("")+"</ul>"}
+  h+="</article>";
+ });
+ document.getElementById("list").innerHTML=n?h:'<p class="none">Không có mục nào khớp. Thử từ khoá ngắn hơn, ví dụ "canxi" hoặc "BP".</p>';
+}
+function drawTabs(){
+ var el=document.getElementById("tabs");el.innerHTML="";
+ tabs.forEach(function(t){var b=document.createElement("button");b.textContent=t;b.setAttribute("aria-pressed",String(t==cur&&!q));b.onclick=function(){cur=t;q="";document.getElementById("q").value="";drawTabs();render()};el.appendChild(b)});
+}
+document.getElementById("q").addEventListener("input",function(e){q=e.target.value.trim();drawTabs();render()});
+function show(id,cls,title,txt){var r=document.getElementById(id);r.className="res "+cls;r.style.display="block";r.innerHTML="<b>"+title+"</b><span>"+txt+"</span>"}
+function calcT(){
+ var v=parseFloat(document.getElementById("ts").value),fx=document.getElementById("fx").checked,fr=document.getElementById("fr").checked;
+ if(isNaN(v)&&!fx){document.getElementById("r1").style.display="none";return}
+ if(fx&&(isNaN(v)||v<=-2.5)){show("r1","bad","Loãng xương nặng, có chỉ định điều trị","Gãy xương do xương yếu"+(isNaN(v)?"":" kèm T-score ≤ -2.5")+". Mục tiêu T-score > -1.5. Chọn bisphosphonate (alendronate, risedronate, zoledronic acid) hoặc thuốc khác theo chức năng thận và nguy cơ.");return}
+ if(fx){show("r1","bad","Có chỉ định điều trị","Gãy đốt sống hoặc cổ xương đùi sau té nhẹ là chỉ định điều trị, không bắt buộc đạt T-score ≤ -2.5. Mục tiêu T-score > -1.5.");return}
+ if(v<=-2.5)show("r1","bad","Loãng xương: có chỉ định điều trị","T-score ≤ -2.5, sau khi loại trừ nguyên nhân thứ phát. Bổ sung canxi, vitamin D, vận động, phòng té ngã và dùng một thuốc nhóm bisphosphonate (lựa chọn đầu tiên). Mục tiêu T-score > -2.5.");
+ else if(v<-1)show("r1",fr?"bad":"warn",fr?"Thiếu xương, nguy cơ cao: có chỉ định điều trị":"Thiếu xương: chưa chỉ định thuốc nếu nguy cơ thấp",fr?"T-score từ -2.5 đến -1 kèm nguy cơ 10 năm cao (hông ≥3% hoặc bất kỳ ≥20%) thuộc chỉ định điều trị.":"Điều chỉnh yếu tố nguy cơ, tăng tập thể dục, bổ sung canxi và vitamin D, phòng té ngã; tính FRAX/NGUYEN và đo lại BMD theo dõi.");
+ else show("r1","ok","Bình thường (T-score ≥ -1)","Duy trì vận động, bổ sung canxi và vitamin D theo nhu cầu, tránh các yếu tố nguy cơ.");
+}
+["ts","fx","fr"].forEach(function(i){document.getElementById(i).addEventListener("input",calcT)});
+function calcC(){
+ var a=+document.getElementById("ag").value,w=+document.getElementById("wt").value,c=+document.getElementById("cr").value;
+ if(!(a>0&&w>0&&c>0)){document.getElementById("r2").style.display="none";return}
+ var v=(140-a)*w/(72*c);
+ show("r2",v<35?"bad":"ok",v.toFixed(1)+" ml/phút",v<35?"Dưới 35 ml/phút: chống chỉ định bisphosphonate; denosumab là lựa chọn được nêu trong tài liệu.":"Từ 35 ml/phút trở lên: không thuộc chống chỉ định theo mức lọc. Ghi chú thêm (ngoài tài liệu): công thức gốc nhân 0,85 với nữ.");
+}
+["ag","wt","cr"].forEach(function(i){document.getElementById(i).addEventListener("input",calcC)});
+drawTabs();render();
+</script>
+</body>
+</html>
